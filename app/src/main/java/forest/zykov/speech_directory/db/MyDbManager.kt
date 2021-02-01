@@ -13,7 +13,7 @@ class MyDbManager(context: Context) {
 
     }
 
-    fun insertToDb(level: String, word: String, translation: String) {
+    fun insertToDb(level: Int, word: String, translation: String) {
         val values = ContentValues().apply {
             put(MyDbNameClass.COLUMN_NAME_LEVEL, level)
             put(MyDbNameClass.COLUMN_NAME_WORD, word)

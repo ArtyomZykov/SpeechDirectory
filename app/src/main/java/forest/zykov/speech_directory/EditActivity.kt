@@ -5,15 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import forest.zykov.speech_directory.db.MyDbManager
-import kotlinx.android.synthetic.main.activity_main.*
-import java.util.concurrent.ThreadLocalRandom
+import kotlinx.android.synthetic.main.edit_activity.*
 
-class MainActivity : AppCompatActivity() {
+class EditActivity : AppCompatActivity() {
+
     val myDbManager = MyDbManager(this)
+    val ifNewWord = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.edit_activity)
     }
 
     override fun onResume() {
@@ -27,13 +28,12 @@ class MainActivity : AppCompatActivity() {
         myDbManager.closeDb()
     }
 
-
-    fun onClickNew(view: View) {
-        val i = Intent(this, EditActivity::class.java)
-        startActivity(i)
-
+    fun onClickSave(view: View) {
+        val myWord = edWord.text.toString()
+        val myTranslation = edTranslation.text.toString()
+        if (myWord != "" && myTranslation != "") {
+            myDbManager.insertToDb(ifNewWord, myWord, myTranslation)
+        }
 
     }
-
-
 }
