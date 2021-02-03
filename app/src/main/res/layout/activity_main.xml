@@ -8,9 +8,11 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,20 +22,26 @@
             android:id="@+id/btnLearnWords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="learn words" />
+            android:layout_marginBottom="8dp"
+            android:text="@string/btn_learn_words"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btnShowWords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show All words" />
+            android:layout_marginBottom="8dp"
+            android:onClick="onClickShow"
+            android:text="@string/btn_show_lib"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btnAddWords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onClickNew"
-            android:text="Add Words" />
+            android:text="@string/btn_add_words"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,8 +22,9 @@ class MyDbManager(context: Context) {
         db?.insert(MyDbNameClass.TABLE_NAME, null, values)
     }
 
-    fun readDbData() : ArrayList<String> {
-        val dataList = ArrayList<String>()
+    fun readDbData() : ArrayList<DbElem> {
+        val dataList = ArrayList<DbElem>()
+
         val cursor = db?.query(
             MyDbNameClass.TABLE_NAME,   // The table to query
             null,             // The array of columns to return (pass null to get all)
@@ -35,14 +36,14 @@ class MyDbManager(context: Context) {
         )
 
         while (cursor?.moveToNext()!!) {
-            var dataText = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_LEVEL))
-            dataList.add(dataText.toString())
-
-            dataText = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_WORD))
-            dataList.add(dataText.toString())
-
-            dataText = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TRANSLATION))
-            dataList.add(dataText.toString())
+            val datalevel = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_LEVEL))
+            val dataWord = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_WORD))
+            val dataTransl = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TRANSLATION))
+            val item = DbElem()
+            item.level = datalevel.toInt()
+            item.word = dataWord
+            item.translation = dataTransl
+            dataList.add(item)
         }
         cursor.close()
         return dataList

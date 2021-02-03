@@ -2,4 +2,10 @@
     <string name="app_name">SpeechDirectory</string>
     <string name="ed_word">Слово</string>
     <string name="ed_translation">Перевод</string>
+    <string name="btn_save">Сохранить</string>
+    <string name="successful_save">Запись успешно сохранена</string>
+    <string name="btn_learn_words">Учить слова</string>
+    <string name="btn_show_lib">Показать библиотеку</string>
+    <string name="btn_add_words">Добавить слова</string>
+    <string name="empty">Библиотека пуста</string>
 </resources>

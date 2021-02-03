@@ -52,8 +52,22 @@
             android:layout_height="wrap_content"
             android:onClick="onClickSave"
             android:shadowColor="#000000"
-            android:text="Seve" />
+            android:text="@string/btn_save"
+            android:textSize="14sp" />
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:onClick="onClickBack"
+        app:backgroundTint="#555555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
