@@ -11,7 +11,8 @@ import forest.zykov.speech_directory.db.MyDbManager
 import kotlinx.android.synthetic.main.edit_activity.*
 
 class EditActivity : AppCompatActivity() {
-
+    var id = 0
+    var isEditState = false
     val myDbManager = MyDbManager(this)
     val ifNewWord = 0
 
@@ -24,7 +25,6 @@ class EditActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         myDbManager.openDb()
-
     }
 
     override fun onDestroy() {
@@ -36,24 +36,39 @@ class EditActivity : AppCompatActivity() {
         val i = Intent(this, MainActivity::class.java)
         startActivity(i)
     }
+
     fun onClickSave(view: View) {
+
         val myWord = edWord.text.toString()
         val myTranslation = edTranslation.text.toString()
         if (myWord != "" && myTranslation != "") {
-            myDbManager.insertToDb(ifNewWord, myWord, myTranslation)
+            if (isEditState) {
+                Log.d("MyLog", "Values: " + ifNewWord + " " + myWord + " " + myTranslation + " " + id)
+                myDbManager.updateItem(ifNewWord, myWord, myTranslation, id)
+            }
+            else {
+                myDbManager.insertToDb(ifNewWord, myWord, myTranslation)
+            }
+            finish()
+            val toast = Toast.makeText(this, "Запись успешно сохранена", Toast.LENGTH_SHORT)
+            toast.show()
         }
-        val toast = Toast.makeText(this, "Запись успешно сохранена", Toast.LENGTH_SHORT);
-        toast.show();
     }
 
     fun getIntents() {
         val i = intent
         if (i != null) {
+            Log.d("MyLog","I_WORD_KEY : " + i.getStringExtra(IntentConstants.I_WORD_KEY))
 
-            if(i.getStringExtra(IntentConstants.I_WORD_KEY) != null)
-                //Log.d("MyLog", "Data received : " + i.getStringExtra(IntentConstants.I_LEVEL_KEY))
+            if (i.getStringExtra(IntentConstants.I_WORD_KEY) != null) {
+                Log.d("MyLog", "+++++++++")
                 edWord.setText(i.getStringExtra(IntentConstants.I_WORD_KEY))
+                Log.d("MyLog", "isEditState : " + isEditState)
+                isEditState = true
                 edTranslation.setText(i.getStringExtra(IntentConstants.I_TRANSLATION_KEY))
+                id = i.getIntExtra(IntentConstants.I_ID_KEY, 0)
+                Log.d("MyLog", "id: " + id)
+            }
         }
     }
 

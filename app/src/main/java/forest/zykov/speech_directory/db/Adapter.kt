@@ -17,6 +17,7 @@ class Adapter(listMain: ArrayList<DbElem>, contextM: Context) : RecyclerView.Ada
     class MHolder(itemView: View, contextV: Context) : RecyclerView.ViewHolder(itemView) {
         val tvElem: TextView = itemView.findViewById(R.id.tv_elem)
         val context = contextV
+
         fun setData(item: DbElem) {
             var str = item.word
             str += " - "
@@ -24,7 +25,8 @@ class Adapter(listMain: ArrayList<DbElem>, contextM: Context) : RecyclerView.Ada
             tvElem.text = str
             itemView.setOnClickListener {
                 val intent = Intent(context, EditActivity::class.java).apply {
-                    putExtra(IntentConstants.I_LEVEL_KEY, item.level.toString())
+                    putExtra(IntentConstants.I_ID_KEY, item.id)
+                    putExtra(IntentConstants.I_LEVEL_KEY, item.level)
                     putExtra(IntentConstants.I_WORD_KEY, item.word)
                     putExtra(IntentConstants.I_TRANSLATION_KEY, item.translation)
                 }
@@ -50,5 +52,12 @@ class Adapter(listMain: ArrayList<DbElem>, contextM: Context) : RecyclerView.Ada
         listArray.clear()
         listArray.addAll(listItems)
         notifyDataSetChanged() // Сообщение адаптеру, чтобы он обновился
+    }
+
+    fun removeItem(pos: Int, dbManager: MyDbManager) {
+        dbManager.removeItemFromDb(listArray[pos].id.toString())
+        listArray.removeAt(pos)
+        notifyItemRangeChanged(0, listArray.size)
+        notifyItemRemoved(pos)
     }
 }

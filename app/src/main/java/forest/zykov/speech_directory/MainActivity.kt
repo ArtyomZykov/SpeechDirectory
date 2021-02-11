@@ -21,6 +21,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(i)
     }
 
+    fun initSearchView() {
+
+    }
     fun onClickNew(view: View) {
         val i = Intent(this, EditActivity::class.java)
         startActivity(i)
