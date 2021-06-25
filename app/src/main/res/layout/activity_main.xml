@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2196F3"
+    android:background="#7793AA"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:onClick="onClickLearning"
             android:text="@string/btn_learn_words"
             android:textSize="14sp" />
 

@@ -16,13 +16,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun onClickShow(view: View) {
-        val i = Intent(this, LibraryActivity::class.java)
+    fun onClickLearning(view: View) {
+        val i = Intent(this, LearningActivity::class.java)
         startActivity(i)
     }
 
-    fun initSearchView() {
-
+    fun onClickShow(view: View) {
+        val i = Intent(this, LibraryActivity::class.java)
+        startActivity(i)
     }
     fun onClickNew(view: View) {
         val i = Intent(this, EditActivity::class.java)

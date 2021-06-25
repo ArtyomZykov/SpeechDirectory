@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
-import android.util.Log
 
 class MyDbManager(context: Context) {
     val myDbHelper = MyDbHelper(context)

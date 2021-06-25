@@ -22,6 +22,7 @@ class Adapter(listMain: ArrayList<DbElem>, contextM: Context) : RecyclerView.Ada
             var str = item.word
             str += " - "
             str += item.translation
+            str += ". Level: " + item.level
             tvElem.text = str
             itemView.setOnClickListener {
                 val intent = Intent(context, EditActivity::class.java).apply {
