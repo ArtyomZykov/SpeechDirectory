@@ -13,8 +13,8 @@ import kotlinx.android.synthetic.main.edit_activity.*
 class EditActivity : AppCompatActivity() {
     var id = 0
     var isEditState = false
-    val myDbManager = MyDbManager(this)
-    val ifNewWord = 0
+    private val myDbManager = MyDbManager(this)
+    private val ifNewWord = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,11 +55,10 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-    fun getIntents() {
+    private fun getIntents() {
         val i = intent
         if (i != null) {
             Log.d("MyLog","I_WORD_KEY : " + i.getStringExtra(IntentConstants.I_WORD_KEY))
-
             if (i.getStringExtra(IntentConstants.I_WORD_KEY) != null) {
                 Log.d("MyLog", "+++++++++")
                 edWord.setText(i.getStringExtra(IntentConstants.I_WORD_KEY))
@@ -71,5 +70,4 @@ class EditActivity : AppCompatActivity() {
             }
         }
     }
-
 }

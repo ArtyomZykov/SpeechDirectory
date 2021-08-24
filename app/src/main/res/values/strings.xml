@@ -8,4 +8,13 @@
     <string name="btn_lib">Библиотека</string>
     <string name="btn_add_words">Добавить слово</string>
     <string name="empty">Библиотека пуста</string>
+    <string name="dialogTitle">Недостаточно слов</string>
+    <string name="dialogMessage">Вам нехватает слов для обучения, наберите хотябы 5 новых слов.</string>
+    <string name="dialogMessage2">У вас закончились слова, которые вы не знаете. Наберите хотябы 5 новых слов.</string>
+    <string name="good">Хорошо</string>
+    <string name="nullException">Activity cannot be null</string>
+    <string name="next">Далее</string>
+    <string name="btn_settings">Настройки</string>
+    <string name="menu">Меню</string>
+    <string name="level">Уровень</string>
 </resources>

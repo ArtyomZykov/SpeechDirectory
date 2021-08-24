@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import forest.zykov.speech_directory.EditActivity
@@ -15,15 +16,26 @@ class Adapter(listMain: ArrayList<DbElem>, contextM: Context) : RecyclerView.Ada
     var context = contextM
 
     class MHolder(itemView: View, contextV: Context) : RecyclerView.ViewHolder(itemView) {
-        val tvElem: TextView = itemView.findViewById(R.id.tv_elem)
+        private val text_first: TextView = itemView.findViewById(R.id.text_first)
+        private val text_second: TextView = itemView.findViewById(R.id.text_second)
+        private val check: ImageView = itemView.findViewById(R.id.imageView)
+
         val context = contextV
 
         fun setData(item: DbElem) {
-            var str = item.word
-            str += " - "
-            str += item.translation
-            str += ". Level: " + item.level
-            tvElem.text = str
+//            var str = item.word
+//            str += " - "
+//            str += item.translation
+//            str += ". Level: " + item.level
+            text_first.text = item.word
+            text_second.text = item.translation
+            when(item.level) {
+                3 -> check.setBackgroundResource(R.drawable.ic_baseline_scatter_plot_24_3)
+                2 -> check.setBackgroundResource(R.drawable.ic_baseline_scatter_plot_24_2)
+                1 -> check.setBackgroundResource(R.drawable.ic_baseline_scatter_plot_24_1)
+                0 -> check.setBackgroundResource(R.drawable.ic_baseline_scatter_plot_24)
+                else -> check.setBackgroundResource(R.drawable.ic_baseline_verified_24)
+            }
             itemView.setOnClickListener {
                 val intent = Intent(context, EditActivity::class.java).apply {
                     putExtra(IntentConstants.I_ID_KEY, item.id)
@@ -46,7 +58,7 @@ class Adapter(listMain: ArrayList<DbElem>, contextM: Context) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: MHolder, position: Int) { // Поздкючает данные из массива к шаблону
-        holder.setData(listArray.get(position))
+        holder.setData(listArray[position])
     }
 
     fun updateAdapter(listItems:List<DbElem>) {

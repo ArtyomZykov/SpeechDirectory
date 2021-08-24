@@ -6,12 +6,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 
 class MyDbManager(context: Context) {
-    val myDbHelper = MyDbHelper(context)
+    private val myDbHelper = MyDbHelper(context)
     var db: SQLiteDatabase? = null
 
     fun openDb() {
         db = myDbHelper.writableDatabase
-
     }
 
     fun insertToDb(level: Int, word: String, translation: String) {
@@ -66,6 +65,7 @@ class MyDbManager(context: Context) {
             dataList.add(item)
         }
         cursor.close()
+        dataList.sortBy { it.level }
         return dataList
     }
 

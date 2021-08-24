@@ -42,7 +42,7 @@ class LibraryActivity : AppCompatActivity() {
         startActivity(i)
     }
 
-    fun init() {
+    private fun init() {
         rcView.layoutManager = LinearLayoutManager(this)
         val swapHelper = getSwatMg()
         swapHelper.attachToRecyclerView(rcView)
@@ -58,7 +58,6 @@ class LibraryActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 val list = myDbManager.readDbData(newText!!)
                 LibAdapter.updateAdapter(list)
@@ -67,7 +66,7 @@ class LibraryActivity : AppCompatActivity() {
         })
     }
 
-    fun fillAdapter() {
+    private fun fillAdapter() {
         val list = myDbManager.readDbData("")
         LibAdapter.updateAdapter(list)
         if (list.size > 0 ) tvNoElements.visibility = View.GONE
@@ -83,12 +82,9 @@ class LibraryActivity : AppCompatActivity() {
             ): Boolean {
                 return false
             }
-
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 LibAdapter.removeItem(viewHolder.adapterPosition, myDbManager)
-
             }
         })
     }
-
 }
